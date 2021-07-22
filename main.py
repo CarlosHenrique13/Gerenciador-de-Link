@@ -1,14 +1,18 @@
 from generector import *
 from time import sleep
 
-def Interface():
+def ControlAplication():
+    return {'versao': 'beta_1.0',
+            }
+
+def Interface(controlapp={}):
     print(f"""{'='*20} Menu {'='*20}
     ls Listar Conteudo
     cd Listar as classe que existe
     cd NOME para entra na classe
     new -c NOME para criar uma classe
     new -l NOME para cria link, nome da classe que pertence o link
-    mont NOME para montar o Arquivo final
+    mont NOME VERSÃO para montar o Arquivo final
     save NOME para salvar o projeto
     load NOME para carrega o projeto
     """)
@@ -78,7 +82,14 @@ def Interface():
             # Carregar o Arquivo
             elif f"{cod[0]}" == 'load':
                 classes = Load(cod[1])
-
+            elif f"{cod[0]}" == 'mont':
+                try:
+                    MontFile(name=cod[1],value=classes,version=cod[2],user=cod[3],versao=controlapp['versao'],style='')
+                except(IndexError):
+                    #try:
+                    MontFile(name=cod[1],value=classes,versao=controlapp['versao'], style='')
+                    #except:
+                        #print("Erro Desconhecido")
 
         # Comando sem entrada de dados
         elif len(cod) == 1:
@@ -119,5 +130,5 @@ def Interface():
     print("Finalizado.")
 
 if __name__ == '__main__':
-    Interface()
+    Interface(ControlAplication())
 
