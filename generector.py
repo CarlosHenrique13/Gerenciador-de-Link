@@ -44,6 +44,9 @@ def Save(name,value):
             else:
                 print("Não foi enviado uma respostar valida")
 
+def Style():
+    """"""
+
 
 def MontFile():
     """
