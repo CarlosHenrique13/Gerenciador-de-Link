@@ -1,1 +1,1 @@
-{'bg': 'Blue', 'bg1': 'Gray', 'h1': 'green', 'h2': 'yellow', 'div': 'red', 'a': 'black', 'a1': 'white'}
+{'bg': 'white', 'bg1': 'rgba(110, 110, 110, 0.233)', 'h1': 'white', 'h2': 'rgb(82, 80, 80)', 'h3': 'rgb(31, 150, 230)', 'div': 'rgb(49, 49, 49)', 'a': 'rgb(9, 136, 136)', 'a1': 'cyan'}

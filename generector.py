@@ -68,10 +68,10 @@ def NewStyle(name):
         style['bg1'] = str(input("Cor de Fundo do Cabeçalho: "))
         style['h1'] = str(input("Cor da letra do titulo H1: "))
         style['h2'] = str(input("Cor da letra do titulo H2: "))
+        style['h3'] = str(input("Cor das Classes: "))
         style['div'] = str(input("Cor do Fundo das Classes e dos Links: "))
         style['a'] = str(input("Cor do Link: "))
         style['a1'] = str(input("Cor do Link quando o mouse passar: "))
-        #style[''] = str(input(""))
         return style
 
 
@@ -104,7 +104,7 @@ def LoadStyle(name):
     :param name: Nome do arquivo
     :return: Dicionario com os comandos de style
     """
-    try:
+    try: 
         if os.path.isfile(f'proj/{name}.style'):
             arg = open(f'proj/{name}.style','r')
             lines = arg.read()
@@ -113,7 +113,7 @@ def LoadStyle(name):
             return ast.literal_eval(lines)
         else:
             print("Arquivo de dezaine não encontrado!!. Usando Arquivo Padrao")
-            return 'defaut'
+            return {'bg': 'white', 'bg1': 'rgba(110, 110, 110, 0.233)', 'h1': 'white', 'h2': 'rgb(82, 80, 80)', 'h3': 'rgb(31, 150, 230)', 'div': 'rgb(49, 49, 49)', 'a': 'rgb(9, 136, 136)', 'a1': 'cyan'}
     except:
         print(f"Não foi possivel Carregado o Arquivo")
 
@@ -140,6 +140,8 @@ def MontStyle(name):
             margin: auto;
             width: 50%;
             height: 50%;
+            border-radius: 5px;
+            box-shadow: 5px 5px rgba(0,0,0,0.08);
             background-color: '''
     style+=f'{styl["bg1"]};\n'
     style += '''
@@ -160,6 +162,7 @@ def MontStyle(name):
             font-size: 25px;
         }
         div{
+            border-radius: 5px;
             text-align: left;
             background-color: '''
     style += f'{styl["div"]};\n'
@@ -169,7 +172,7 @@ def MontStyle(name):
             text-indent: 0.5em;
             font-size: 23px;
             color: '''
-    style += f'{styl["h2"]};\n'
+    style += f'{styl["h3"]};\n'
     style += '''
             background: none;
         }
@@ -250,7 +253,7 @@ def MontFile(name,value,versao,user='Anonimo',version='1.0',style='defaut'):
         </p>
         <p>
             Criador do Codigo<br>
-            &copy; Carlos Henrique A. Santos<br>
+            &copy; Carlos H. A. Santos<br>
             Versão: {versao}
         </p>
     </footer>
