@@ -1,1 +1,0 @@
-{'Java': {'teste': 'testando', 'face': 'faceboock', 'cu': 'cuck.com'}, 'Python': {'python3': 'python.org', 'github': 'github.org'}}

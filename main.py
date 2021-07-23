@@ -12,6 +12,7 @@ def Interface(controlapp={}):
     cd NOME para entra na classe
     new -c NOME para criar uma classe
     new -l NOME para cria link, nome da classe que pertence o link
+    new -s NOME para montar o dezaine da pagina do mont(comando) 
     mont NOME VERSÃO para montar o Arquivo final
     save NOME para salvar o projeto
     load NOME para carrega o projeto
@@ -66,6 +67,13 @@ def Interface(controlapp={}):
                         print("Esta faltando Valores no Comando")
                 except(IndexError):
                     print("Esta faltando Valores no Comando")
+            # Montar o Dezine da Pagina
+            elif f"{cod[0]} {cod[1]}" == 'new -s':
+                try:
+                    status = NewStyle(cod[2])
+                    print(status)
+                except(IndexError):
+                    print("Esta faltando Valores no Comando")
             # Voltar de uma Classe
             elif f"{cod[0]}" == 'cd':
                 if cod[1] != '..':
@@ -84,12 +92,12 @@ def Interface(controlapp={}):
                 classes = Load(cod[1])
             elif f"{cod[0]}" == 'mont':
                 try:
-                    MontFile(name=cod[1],value=classes,version=cod[2],user=cod[3],versao=controlapp['versao'],style='')
+                    MontFile(name=cod[1],value=classes,version=cod[2],user=cod[3],versao=controlapp['versao'],style=cod[4])
                 except(IndexError):
-                    #try:
-                    MontFile(name=cod[1],value=classes,versao=controlapp['versao'], style='')
-                    #except:
-                        #print("Erro Desconhecido")
+                    try:
+                        MontFile(name=cod[1],value=classes,versao=controlapp['versao'], style='')
+                    except:
+                        print("Erro Desconhecido")
 
         # Comando sem entrada de dados
         elif len(cod) == 1:
