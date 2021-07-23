@@ -16,6 +16,8 @@ def Load(name):
             arg.close()
             print(f"Arquivo {name}.link Carregado com Sucesso!\n")
             return ast.literal_eval(lines)
+        else:
+            return {}
     except:
         print(f"Não foi possivel Carregado o Arquivo")
 
