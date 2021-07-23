@@ -84,9 +84,14 @@ def Interface(controlapp={}):
                     print(f'Você foi para Home \n')
             # Salvar o projeto
             elif f"{cod[0]}" == 'save':
-                    print(cod[1],classes)
-                    status = Save(cod[1],classes)
-                    print(status)
+                    try:
+                        if cod[1] != '':
+                            status = Save(cod[1],classes)
+                            print(status)
+                        else:
+                            print("Esta faltando Valores no Comando")
+                    except(IndexError):
+                        print("Esta faltando Valores no Comando")
             # Carregar o Arquivo
             elif f"{cod[0]}" == 'load':
                 classes = Load(cod[1])

@@ -10,11 +10,11 @@ def Load(name):
     :return: Status do Propjeto
     """
     try:
-        if os.path.isfile(f'proj/{name}.link'):
-            arg = open(f'proj/{name}.link','r')
+        if os.path.isfile(f'proj/{name.lower()}.link'):
+            arg = open(f'proj/{name.lower()}.link','r')
             lines = arg.read()
             arg.close()
-            print(f"Arquivo {name}.link Carregado com Sucesso!\n")
+            print(f"Arquivo {name.lower()}.link Carregado com Sucesso!\n")
             return ast.literal_eval(lines)
         else:
             return {}
@@ -33,8 +33,8 @@ def Save(name,value):
     if not os.path.isdir("proj"):
         os.makedirs("proj")
 
-    if not os.path.isfile(f"proj/{name}.link"):
-        arg = open(f"proj/{name}.link",'w+')
+    if not os.path.isfile(f"proj/{name.lower()}.link"):
+        arg = open(f"proj/{name.lower()}.link",'w+')
         arg.write(f'{value}\n')
         arg.close()
         return "Arquivo Criado com Sucesso\n"
@@ -45,7 +45,7 @@ def Save(name,value):
             if res == 'n':
                 return "Arquivo não salvo!"
             elif res == 's':
-                arg = open(f"proj/{name}.link", 'w+')
+                arg = open(f"proj/{name.lower()}.link", 'w+')
                 arg.write(f'{value}\n')
                 arg.close()
                 return "Arquivo Salvo com Sucesso\n"
@@ -64,14 +64,14 @@ def NewStyle(name):
         :return: Dicionario com os comandos e styles
         """
         style = {}
-        style['bg'] = str(input("Cor do Fundo da Pagina: "))
-        style['bg1'] = str(input("Cor de Fundo do Cabeçalho: "))
-        style['h1'] = str(input("Cor da letra do titulo H1: "))
-        style['h2'] = str(input("Cor da letra do titulo H2: "))
-        style['h3'] = str(input("Cor das Classes: "))
-        style['div'] = str(input("Cor do Fundo das Classes e dos Links: "))
-        style['a'] = str(input("Cor do Link: "))
-        style['a1'] = str(input("Cor do Link quando o mouse passar: "))
+        style['bg'] = str(input("Cor do Fundo da Pagina: ").lower())
+        style['bg1'] = str(input("Cor de Fundo do Cabeçalho: ").lower())
+        style['h1'] = str(input("Cor da letra do titulo H1: ").lower())
+        style['h2'] = str(input("Cor da letra do titulo H2: ").lower())
+        style['h3'] = str(input("Cor das Classes: ").lower())
+        style['div'] = str(input("Cor do Fundo das Classes e dos Links: ").lower())
+        style['a'] = str(input("Cor do Link: ").lower())
+        style['a1'] = str(input("Cor do Link quando o mouse passar: ").lower())
         return style
 
 
@@ -79,8 +79,8 @@ def NewStyle(name):
     if not os.path.isdir("proj"):
         os.makedirs("proj")
 
-    if not os.path.isfile(f"proj/{name}.style"):
-        arg = open(f"proj/{name}.style",'w+')
+    if not os.path.isfile(f"proj/{name.lower()}.style"):
+        arg = open(f"proj/{name.lower()}.style",'w+')
         arg.write(f'{value}\n')
         arg.close()
         return "Arquivo Criado com Sucesso\n"
@@ -91,7 +91,7 @@ def NewStyle(name):
             if res == 'n':
                 return "Arquivo não salvo!"
             elif res == 's':
-                arg = open(f"proj/{name}.style", 'w+')
+                arg = open(f"proj/{name.lower()}.style", 'w+')
                 arg.write(f'{value}\n')
                 arg.close()
                 return "Arquivo Salvo com Sucesso\n"
@@ -105,11 +105,11 @@ def LoadStyle(name):
     :return: Dicionario com os comandos de style
     """
     try: 
-        if os.path.isfile(f'proj/{name}.style'):
-            arg = open(f'proj/{name}.style','r')
+        if os.path.isfile(f'proj/{name.lower()}.style'):
+            arg = open(f'proj/{name.lower()}.style','r')
             lines = arg.read()
             arg.close()
-            print(f"Arquivo {name}.style Carregado com Sucesso!\n")
+            print(f"Arquivo {name.lower()}.style Carregado com Sucesso!\n")
             return ast.literal_eval(lines)
         else:
             print("Arquivo de dezaine não encontrado!!. Usando Arquivo Padrao")
@@ -230,16 +230,16 @@ def MontFile(name,value,versao,user='Anonimo',version='1.0',style='defaut'):
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{name}</title>
+<title>{name.upper()}</title>
 {MontStyle(style)}
 </head>
 <body>
     <section>
         <h1>Gerenciador de Link</h1>
-        <h2>Projeto {name}</h2>
+        <h2>Projeto {name.upper()}</h2>
         <div>'''
             for clas in value.keys():
-                html += f'<h3>{clas}</h3>\n<div id="list">\n'
+                html += f'<h3>{clas.upper()}</h3>\n<div id="list">\n'
                 for linkr in value[clas]:
                     html += f'<a href="{value[clas][linkr]}">{linkr}</a><br>\n'
                 html += '</div>'
@@ -259,21 +259,21 @@ def MontFile(name,value,versao,user='Anonimo',version='1.0',style='defaut'):
     </footer>
 </body>
 </html>'''
-            print(f"Arquivo {name}.html criado com Sucesso!!\n")
+            print(f"Arquivo {name.lower()}.html criado com Sucesso!!\n")
             return html.encode('utf-8')
         except:
-            print(f"Erro em Montar o Arquivo {name}.html !!")
+            print(f"Erro em Montar o Arquivo {name.lower()}.html !!")
 
     name = name.strip(' ')
     # Criar pasta de Origem do Arquivo
     if not os.path.isdir("links"):
         os.makedirs("links")
     # Montar o arquivo
-    if not os.path.isfile(f"links/{name}.html"):
-        arg = open(f'links/{name}.html','wb+')
+    if not os.path.isfile(f"links/{name.lower()}.html"):
+        arg = open(f'links/{name.lower()}.html','wb+')
         arg.write(Mont(value=value,name=name,version=version,versao=versao,user=user,style=style))
         arg.close()
-        return f"Arquivo Criado com Sucesso. links/{name}.html\n"
+        return f"Arquivo Criado com Sucesso. links/{name.lower()}.html\n"
     else:
         while True:
             print("Você que salvar a alteração do arquivo? ")
@@ -281,9 +281,9 @@ def MontFile(name,value,versao,user='Anonimo',version='1.0',style='defaut'):
             if res == 'n':
                 return "Arquivo não salvo!"
             elif res == 's':
-                arg = open(f'links/{name}.html','wb+')
+                arg = open(f'links/{name.lower()}.html','wb+')
                 arg.write(Mont(value=value,name=name,version=version,versao=versao,user=user,style=style))
                 arg.close()
-                return f"Arquivo Salvo com Sucesso. links/{name}.html\n"
+                return f"Arquivo Salvo com Sucesso. links/{name.lower()}.html\n"
             else:
                 print("Não foi enviado uma respostar valida")
